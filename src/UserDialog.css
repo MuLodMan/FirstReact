@@ -1,0 +1,47 @@
+.UserDialog-Wrapper{
+position: absolute;
+bottom: 0;
+top:0;
+left: 0;
+right: 0;
+background: rgba(158, 181, 184, 0.24)
+}
+.UserDialog-Wrapper .UserDialog{
+    transform: translate(-50%,-50%);
+    position: absolute;
+    top:50%;
+    left: 50%;
+    background-color: rgb(192, 176, 176);
+}
+.UserDialog-Wrapper .UserDialog nav{
+    display: flex;
+    justify-content: space-between;
+}
+.UserDialog-Wrapper .UserDialog nav div {
+    flex: 1;
+    text-align: center;
+    background: rgb(233, 230, 230)
+}
+.UserDialog-Wrapper .UserDialog .signUp,.signIn{
+    margin:5px 20px;
+    display: none;
+}
+.UserDialog-Wrapper .UserDialog .signUp,.signIn input{
+    border: 0px;
+}
+.show{
+    display: block;
+}
+.nactive{
+    background-color: rgb(192, 176, 176) !important;
+}
+.signIn.show .row{
+margin:10px;
+display: flex;
+}
+.signIn.show .row label{
+    flex: 1;
+}
+.signIn.show .row input{
+    flex: 2;
+}
