@@ -5,6 +5,8 @@ import TodoInput from './TodoInput'
 import TodoItem from './TodoItem'
 import {save,load} from './localStorage'
 import UserLog from './UserDialog'
+import {UserInfo,Todo,lc} from'./leancloud'
+import UserDialog from './UserDialog';
 class App extends Component {
   constructor(props){
     super(props)
@@ -27,7 +29,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <UserLog/>
+        <UserLog postAction={this.postAction}/>
         <h1>我的待办</h1>
         <div className="inputWrapper">
           <TodoInput content={this.state.newTodo} 
@@ -64,10 +66,33 @@ class App extends Component {
     })
   }
   delete(event, todo){
-    debugger
     todo.deleted = true
     this.setState(this.state) 
   }
+  postAction(userMessage){
+  let messages = Object.keys(userMessage),
+      queryArr = [],
+      argLength = messages.length;
+  if(argLength===2){
+    for(let i = 0 ;i < argLength ;i++){
+    let key = messages[i];
+     queryArr.push(new lc.Query("UserInfo").contains(key,userMessage[key]))
+    }
+    return lc.Query.and(...queryArr).find().then(function(e){
+      if(!e[0].attributes){
+        Promise.reject("inValid")
+      }
+      else{
+        Promise.resolve("Valid")
+      }
+    })
+  }
+  if(argLength===3){
+   return UserInfo.save(userMessage,{fetchWhenSave:true}).then(function(suc){
+      Promise.resolve("Valide")
+    })
+  }
+}
 }
 
 export default App;

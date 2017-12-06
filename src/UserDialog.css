@@ -30,18 +30,18 @@ background: rgba(158, 181, 184, 0.24)
     border: 0px;
 }
 .show{
-    display: block;
+    display: block!important;
 }
 .nactive{
     background-color: rgb(192, 176, 176) !important;
 }
-.signIn.show .row{
+.signIn .row,.signUp .row{
 margin:10px;
 display: flex;
 }
-.signIn.show .row label{
+.signIn .row label,.signUp .row label{
     flex: 1;
 }
-.signIn.show .row input{
+.signIn .row input,.signUp .row input{
     flex: 2;
 }
